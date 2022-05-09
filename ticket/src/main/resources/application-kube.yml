@@ -1,0 +1,34 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: ticket
+  datasource:
+    password: 'root'
+    url: jdbc:postgresql://postgres:5432/ticket
+    username: 'anillama'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    show-sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+    addresses: rabbitmq:5672
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    removeAllTicketsByProject: removeAllTicketsByProject.queue
+  routing-keys:
+    internal-removeAllTicketsByProject: internal.removeAllTicketsByProject.routing-key

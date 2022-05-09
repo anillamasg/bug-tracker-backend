@@ -1,0 +1,67 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bug-tracker-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: authentication.bugtracker.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: authentication
+                port:
+                  number: 80
+    - host: sessionmanagement.bugtracker.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: sessionmanagement
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /
+    - host: profile.bugtracker.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: profile
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /
+    - host: project.bugtracker.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: project
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /
+    - host: ticket.bugtracker.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: ticket
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /
+    - host: userproject.bugtracker.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: userproject
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /

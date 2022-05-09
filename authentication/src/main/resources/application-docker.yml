@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: authentication
+  datasource:
+    password: 'root'
+    url: jdbc:postgresql://postgres:5432/user
+    username: 'anillama'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    show-sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+    addresses: rabbitmq:5672

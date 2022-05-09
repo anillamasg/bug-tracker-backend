@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket
+  labels:
+    app: ticket
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: ticket
+      labels:
+        app: ticket
+    spec:
+      containers:
+        - name: ticket
+          image: anillama/ticket:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: ticket

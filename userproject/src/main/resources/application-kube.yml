@@ -1,0 +1,41 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: userproject
+  datasource:
+    password: 'root'
+    url: jdbc:postgresql://postgres:5432/userproject
+    username: 'anillama'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    show-sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+    addresses: rabbitmq:5672
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    registerUserProject: registerUserProject.queue
+    checkUserProject: checkUserProject.queue
+    removeUserProject: removeUserProject.queue
+    removeAllUserProjectsByProject: removeAllUserProjectsByProject.queue
+    removeAllUserProjectsByUser: removeAllUserProjectsByUser.queue
+    getAllProjectsForUser: getAllProjectsForUser.queue
+    getAllUsersOfProject: getAllUsersOfProject.queue
+  routing-keys:
+    internal-registerUserProject: internal.registerUserProject.routing-key
+    internal-checkUserProject: internal.checkUserProject.routing-key
+    internal-removeUserProject: internal.removeUserProject.routing-key
+    internal-removeAllUserProjectsByProject: internal.removeAllUserProjectsByProject.routing-key
+    internal-removeAllUserProjectsByUser: internal.removeAllUserProjectsByUser.routing-key
+    internal-getAllProjectsForUser: internal.getAllProjectsForUser.routing-key
+    internal-getAllUsersOfProject: internal.getAllUsersOfProject.routing-key

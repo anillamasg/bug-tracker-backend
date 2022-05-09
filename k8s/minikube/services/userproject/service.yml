@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: userproject
+spec:
+  selector:
+    app: userproject
+  ports:
+    - port: 80
+      targetPort: 8085
+  type: NodePort

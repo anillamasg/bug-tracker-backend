@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: project
+  datasource:
+    password: 'root'
+    url: jdbc:postgresql://localhost:5432/project
+    username: 'anillama'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    show-sql: true
+  zipkin:
+    base-url: http://localhost:9411
+  rabbitmq:
+    addresses: localhost:5672
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    projectExists: projectExists.queue
+  routing-keys:
+    internal-projectExists: internal.projectExists.routing-key

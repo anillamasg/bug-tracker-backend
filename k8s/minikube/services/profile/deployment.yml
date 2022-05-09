@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile
+  labels:
+    app: profile
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: profile
+      labels:
+        app: profile
+    spec:
+      containers:
+        - name: profile
+          image: anillama/profile:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: profile

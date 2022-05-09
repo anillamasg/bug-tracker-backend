@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: sessionmanagement
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: mypassword
+    timeout: 60000
+  rabbitmq:
+    addresses: localhost:5672
+  zipkin:
+    base-url: http://localhost:9411
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    registerSession: registerSession.queue
+    checkSession: checkSession.queue
+    removeSession: removeSession.queue
+  routing-keys:
+    internal-registerSession: internal.registerSession.routing-key
+    internal-checkSession: internal.checkSession.routing-key
+    internal-removeSession: internal.removeSession.routing-key
