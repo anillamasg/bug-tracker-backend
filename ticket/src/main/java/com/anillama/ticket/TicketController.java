@@ -35,26 +35,31 @@ public class TicketController {
 
     @GetMapping("/byAssignee/{assigneeId}")
     public ResponseEntity<List<Ticket>> findAllByAssigneeId(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long assigneeId) {
+        log.info("findAllByAssigneeId => {}", assigneeId);
         return ticketService.findAllByAssigneeId(authorizationHeader, assigneeId);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createTicket(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @RequestBody TicketRequest request) {
+    public ResponseEntity<Long> createTicket(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @RequestBody TicketRequest request) {
+        log.info("createTicket => {}", request);
         return ticketService.createTicket(authorizationHeader, request);
     }
 
     @PutMapping
     public ResponseEntity<String> updateTicket(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @RequestBody TicketRequest request) {
+        log.info("updateTicket => {}", request);
         return ticketService.updateTicket(authorizationHeader, request);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTicket(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long id) {
+        log.info("deleteTicket => {}", id);
         return ticketService.deleteTicketById(authorizationHeader, id);
     }
 
     @DeleteMapping("/byProject/{projectId}")
     public ResponseEntity<String> deleteAllTicketsByProject(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long projectId) {
+        log.info("deleteAllTicketsByProject => {}", projectId);
         return ticketService.deleteAllTicketsByProject(authorizationHeader, projectId);
     }
 

@@ -32,6 +32,8 @@ public final class ApplicationUtil {
     public static final String INTERNAL_GET_ALL_USERS_OF_PROJECT_ROUTING_KEY = "internal.getAllUsersOfProject.routing-key";
     public static final String INTERNAL_PROJECT_EXISTS_ROUTING_KEY = "internal.projectExists.routing-key";
     public static final String INTERNAL_REMOVE_PROFILE_ROUTING_KEY = "internal.removeProfile.routing-key";
+    public static final String INTERNAL_GET_NAME_PROFILE_ROUTING_KEY = "internal.getNameProfile.routing-key";
+    public static final String INTERNAL_CREATE_PROFILE_FROM_QUEUE_ROUTING_KEY = "internal.createProfileFromQueue.routing-key";
 
     public static String invalidUserFailed(String serviceName, String operation) {
         return "Invalid user. " + serviceName + operation + " failed.";

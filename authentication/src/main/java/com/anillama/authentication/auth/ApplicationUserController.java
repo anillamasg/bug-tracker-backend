@@ -38,6 +38,12 @@ public class ApplicationUserController {
         return userService.getUser(authorizationHeader, id);
     }
 
+    @GetMapping("/getUserSelf/{id}")
+    public ResponseEntity<UserResponse> getUserSelf(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long id) {
+        log.info("Requested getUserSelf ==> ", id);
+        return userService.getUserSelf(authorizationHeader, id);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<UserResponse>> getAllUsers(@RequestHeader(name = AUTHORIZATION) String authorizationHeader) {
         log.info("Requested getAllUsers ==> ");
@@ -48,5 +54,11 @@ public class ApplicationUserController {
     public ResponseEntity<List<UserResponse>> getAllUsersByProject(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long projectId) {
         log.info("Requested getAllUsers ==> {}", projectId);
         return userService.getAllUsersByProject(authorizationHeader, projectId);
+    }
+
+    @GetMapping("/allWithoutProject/{projectId}")
+    public ResponseEntity<List<UserResponse>> getAllUsersWithoutProject(@RequestHeader(name = AUTHORIZATION) String authorizationHeader, @PathVariable Long projectId) {
+        log.info("Requested getAllUsersWithoutProject ==> {}", projectId);
+        return userService.getAllUsersWithoutProject(authorizationHeader, projectId);
     }
 }

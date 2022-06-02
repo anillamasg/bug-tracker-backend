@@ -1,19 +1,20 @@
 package com.anillama.ticket;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "ticket")
 public class Ticket {
     @Id
     @SequenceGenerator(name = "ticket_id_sequence", sequenceName = "ticket_id_sequence", allocationSize = 1)
@@ -26,7 +27,7 @@ public class Ticket {
     @Column(nullable = false)
     private String assignee;
     @Column(nullable = false)
-    private LocalDate createDate;
+    private LocalDate createdDate;
     @Column(nullable = false)
     private String createdBy;
     @Column(nullable = false)
@@ -37,8 +38,8 @@ public class Ticket {
     private String type;
     @Column(nullable = false)
     private String status;
-    @ElementCollection
-    private List<String> comments;
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TicketComment> comments = new ArrayList<>();
     private String description;
     @ElementCollection
     private List<String> fileNames;
@@ -46,5 +47,11 @@ public class Ticket {
     private Long assigneeId;
     @Column(nullable = false)
     private Long projectId;
+    @Column(nullable = false)
+    private String projectName;
+
+    public void addComment(TicketComment ticketComment){
+        this.getComments().add(ticketComment);
+    }
 }
 

@@ -1,5 +1,6 @@
 package com.anillama.profile;
 
+import com.anillama.clients.profile.ProfileRequest;
 import com.anillama.clients.sessionmanagement.ApplicationUserSessionRequest;
 import com.anillama.clients.sessionmanagement.ApplicationUserSessionValidateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,18 @@ public class ProfileService {
     @Transactional
     public void removeProfile(Long userId) {
         profileRepository.deleteProfileByUserId(userId);
+    }
+
+    public String getNameFromProfile(Long userId) {
+        return profileRepository.getProfileByUserId(userId).getName();
+    }
+
+    public void createProfileFromQueue(ProfileRequest request) {
+        Profile profile = Profile.builder()
+                .userId(request.userId())
+                .name(request.name())
+                .email(request.email())
+                .build();
+        profileRepository.save(profile);
     }
 }

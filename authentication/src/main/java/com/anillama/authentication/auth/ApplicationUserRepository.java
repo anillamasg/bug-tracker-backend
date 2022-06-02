@@ -15,4 +15,7 @@ public interface ApplicationUserRepository extends JpaRepository<ApplicationUser
 
     @Query("select u from ApplicationUser u where u.id in (?1)")
     List<ApplicationUser> findAllByUserIds(List<Long> userIds);
+
+    @Query("select u from ApplicationUser u where u.id not in (?1)")
+    List<ApplicationUser> findAllExceptUserIds(List<Long> userIds);
 }

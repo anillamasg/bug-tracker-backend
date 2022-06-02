@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -42,7 +43,7 @@ public class TicketService {
         this.messageProducer = messageProducer;
     }
 
-    public ResponseEntity<String> createTicket(String authorizationHeader, TicketRequest request) {
+    public ResponseEntity<Long> createTicket(String authorizationHeader, TicketRequest request) {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), request.projectId()), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
@@ -55,18 +56,30 @@ public class TicketService {
                     .assigneeId(request.assigneeId())
                     .assignee(request.assignee())
                     .assignedBy(request.assignedBy())
-                    .createDate(LocalDate.now())
+                    .createdDate(LocalDate.now())
                     .createdBy(request.createdBy())
                     .dueDate(LocalDate.parse(request.dueDate()))
                     .priority(request.priority())
                     .status(request.status())
                     .type((request.type()))
-                    .comments(request.comments())
                     .fileNames(request.attachedFiles())
                     .projectId(request.projectId())
+                    .projectName(request.projectName())
                     .build();
-            ticketRepository.save(ticket);
-            return ResponseEntity.ok(serviceSuccessful(TICKET, CREATION));
+            ticket = ticketRepository.save(ticket);
+
+            Path sourceFilePath = Paths.get(uploadDirectory + "0/");
+            Path targetFilePath = Paths.get(uploadDirectory + ticket.getId() + "/");
+
+            try {
+                Files.move(sourceFilePath, targetFilePath);
+            } catch (FileAlreadyExistsException ex) {
+                log.info("Target file already exists");
+            } catch (IOException ex) {
+                log.info("I/O error: {}", ex);
+            }
+
+            return ResponseEntity.ok(ticket.getId());
         }
         return new ResponseEntity(invalidUserFailed(TICKET, CREATION), HttpStatus.UNAUTHORIZED);
     }
@@ -171,8 +184,19 @@ public class TicketService {
             savedTicket.setPriority(request.priority());
             savedTicket.setStatus(request.status());
             savedTicket.setType(request.type());
-            savedTicket.setComments(request.comments());
-            savedTicket.setFileNames(request.attachedFiles());
+
+            TicketComment newComment = request.comment();
+            TicketCommentAction action = newComment.getAction();
+            action.setComment(newComment);
+            newComment.setAction(action);
+            newComment.setTicket(savedTicket);
+
+            List<TicketComment> newComments = savedTicket.getComments();
+            newComments.add(newComment);
+            savedTicket.setComments(newComments);
+
+            savedTicket.setProjectId(request.projectId());
+            savedTicket.setProjectName(request.projectName());
             ticketRepository.save(savedTicket);
             return ResponseEntity.ok(serviceSuccessful(TICKET, UPDATE));
         }

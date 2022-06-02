@@ -1,6 +1,7 @@
 package com.anillama.authentication.auth;
 
 import com.anillama.amqp.RabbitMQMessageProducer;
+import com.anillama.clients.profile.ProfileRequest;
 import com.anillama.clients.sessionmanagement.ApplicationUserSessionRequest;
 import com.anillama.clients.sessionmanagement.ApplicationUserSessionValidateService;
 import com.anillama.clients.userproject.UserResponse;
@@ -58,7 +59,8 @@ public class ApplicationUserService implements UserDetailsService {
                     .password(passwordEncoder.encode(request.password()))
                     .role(request.role())
                     .build();
-            userRepository.save(user);
+            user = userRepository.save(user);
+            messageProducer.publish(new ProfileRequest(user.getId(), request.name(), request.email()), INTERNAL_EXCHANGE, INTERNAL_CREATE_PROFILE_FROM_QUEUE_ROUTING_KEY);
             return ResponseEntity.ok(serviceSuccessful(APPLICATION_USER, CREATION));
         }
         return new ResponseEntity(invalidUserFailed(APPLICATION_USER, CREATION), HttpStatus.UNAUTHORIZED);
@@ -73,7 +75,23 @@ public class ApplicationUserService implements UserDetailsService {
             Optional<ApplicationUser> optional = Optional.ofNullable(userRepository.findById(id).orElse(null));
             if (optional.isEmpty())
                 return new ResponseEntity(serviceDoesNotExist(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
-            UserResponse userResponse = new UserResponse(optional.get().getId(), optional.get().getUsername(), optional.get().getRole());
+
+            String name = messageProducer.publishAndReceive(optional.get().getId(), INTERNAL_EXCHANGE, INTERNAL_GET_NAME_PROFILE_ROUTING_KEY);
+            UserResponse userResponse = new UserResponse(optional.get().getId(), optional.get().getUsername(), optional.get().getRole(), name);
+            return ResponseEntity.ok(userResponse);
+        }
+        return new ResponseEntity(invalidUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
+    }
+
+    public ResponseEntity<UserResponse> getUserSelf(String authorizationHeader, Long id) {
+        ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
+        if (response.token().equals(VALID)) {
+            Optional<ApplicationUser> optional = Optional.ofNullable(userRepository.findById(id).orElse(null));
+            if (optional.isEmpty())
+                return new ResponseEntity(serviceDoesNotExist(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+
+            String name = messageProducer.publishAndReceive(optional.get().getId(), INTERNAL_EXCHANGE, INTERNAL_GET_NAME_PROFILE_ROUTING_KEY);
+            UserResponse userResponse = new UserResponse(optional.get().getId(), optional.get().getUsername(), optional.get().getRole(), name);
             return ResponseEntity.ok(userResponse);
         }
         return new ResponseEntity(invalidUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
@@ -91,7 +109,8 @@ public class ApplicationUserService implements UserDetailsService {
 
             List<UserResponse> userResponseList = new ArrayList<>();
             for (ApplicationUser user : applicationUsers) {
-                userResponseList.add(new UserResponse(user.getId(), user.getUsername(), user.getRole()));
+                String name = messageProducer.publishAndReceive(user.getId(), INTERNAL_EXCHANGE, INTERNAL_GET_NAME_PROFILE_ROUTING_KEY);
+                userResponseList.add(new UserResponse(user.getId(), user.getUsername(), user.getRole(), name));
             }
             return ResponseEntity.ok(userResponseList);
         }
@@ -101,8 +120,8 @@ public class ApplicationUserService implements UserDetailsService {
     public ResponseEntity<List<UserResponse>> getAllUsersByProject(String authorizationHeader, Long projectId) {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
-            if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+//            if (!response.role().equals(ADMIN))
+//                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
 
             String check = messageProducer.publishAndReceive(projectId, INTERNAL_EXCHANGE, INTERNAL_PROJECT_EXISTS_ROUTING_KEY);
             if (check.equals(INVALID))
@@ -115,7 +134,31 @@ public class ApplicationUserService implements UserDetailsService {
 
             List<UserResponse> userResponseList = new ArrayList<>();
             for (ApplicationUser user : applicationUsers) {
-                userResponseList.add(new UserResponse(user.getId(), user.getUsername(), user.getRole()));
+                String name = messageProducer.publishAndReceive(user.getId(), INTERNAL_EXCHANGE, INTERNAL_GET_NAME_PROFILE_ROUTING_KEY);
+                userResponseList.add(new UserResponse(user.getId(), user.getUsername(), user.getRole(), name));
+            }
+            return ResponseEntity.ok(userResponseList);
+        }
+        return new ResponseEntity(invalidUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
+    }
+
+    public ResponseEntity<List<UserResponse>> getAllUsersWithoutProject(String authorizationHeader, Long projectId) {
+        ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
+        if (response.token().equals(VALID)) {
+            if (!response.role().equals(ADMIN))
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+
+            String check = messageProducer.publishAndReceive(projectId, INTERNAL_EXCHANGE, INTERNAL_PROJECT_EXISTS_ROUTING_KEY);
+            if (check.equals(INVALID))
+                return new ResponseEntity(serviceDoesNotExist(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+
+            List<Long> userIds = messageProducer.publishAndReceiveList(projectId, INTERNAL_EXCHANGE, INTERNAL_GET_ALL_USERS_OF_PROJECT_ROUTING_KEY);
+            List<ApplicationUser> applicationUsers = userRepository.findAllExceptUserIds(userIds);
+
+            List<UserResponse> userResponseList = new ArrayList<>();
+            for (ApplicationUser user : applicationUsers) {
+                String name = messageProducer.publishAndReceive(user.getId(), INTERNAL_EXCHANGE, INTERNAL_GET_NAME_PROFILE_ROUTING_KEY);
+                userResponseList.add(new UserResponse(user.getId(), user.getUsername(), user.getRole(), name));
             }
             return ResponseEntity.ok(userResponseList);
         }

@@ -26,5 +26,9 @@ rabbitmq:
     internal: internal.exchange
   queues:
     removeProfile: removeProfile.queue
+    getNameProfile: getNameProfile.queue
+    createProfileFromQueue: createProfileFromQueue.queue
   routing-keys:
     internal-removeProfile: internal.removeProfile.routing-key
+    internal-getNameProfile: internal.getNameProfile.routing-key
+    internal-createProfileFromQueue: internal.createProfileFromQueue.routing-key
