@@ -49,7 +49,7 @@ public class ApplicationUserService implements UserDetailsService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, CREATION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, CREATION), HttpStatus.UNAUTHORIZED);
 
             ApplicationUser user = userRepository.findByUsername(request.email());
             if (user != null)
@@ -70,7 +70,7 @@ public class ApplicationUserService implements UserDetailsService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
 
             Optional<ApplicationUser> optional = Optional.ofNullable(userRepository.findById(id).orElse(null));
             if (optional.isEmpty())
@@ -101,7 +101,7 @@ public class ApplicationUserService implements UserDetailsService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
 
             List<ApplicationUser> applicationUsers = userRepository.findAll();
             if (applicationUsers == null)
@@ -146,7 +146,7 @@ public class ApplicationUserService implements UserDetailsService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, RETRIEVAL), HttpStatus.UNAUTHORIZED);
 
             String check = messageProducer.publishAndReceive(projectId, INTERNAL_EXCHANGE, INTERNAL_PROJECT_EXISTS_ROUTING_KEY);
             if (check.equals(INVALID))
@@ -170,7 +170,7 @@ public class ApplicationUserService implements UserDetailsService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(APPLICATION_USER, DELETION), HttpStatus.UNAUTHORIZED);
 
             Optional<ApplicationUser> user = userRepository.findById(id);
             if (user.isEmpty())

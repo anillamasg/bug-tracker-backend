@@ -32,7 +32,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, CREATION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, CREATION), HttpStatus.UNAUTHORIZED);
             Project project = projectRepository.getProjectByName(request.name());
             if (project != null)
                 return new ResponseEntity(serviceAlreadyExists(PROJECT, CREATION), HttpStatus.BAD_REQUEST);
@@ -54,7 +54,7 @@ public class ProjectService {
         if (response.token().equals(VALID)) {
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), id), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, RETRIEVAL), HttpStatus.UNAUTHORIZED);
             Project project = projectRepository.getProjectById(id);
             if (project == null)
                 return new ResponseEntity(serviceDoesNotExist(PROJECT, RETRIEVAL), HttpStatus.BAD_REQUEST);
@@ -67,7 +67,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, UPDATE), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, UPDATE), HttpStatus.UNAUTHORIZED);
             Project savedProfile = projectRepository.getProjectById(id);
             if (savedProfile == null)
                 return new ResponseEntity(serviceDoesNotExist(PROJECT, UPDATE), HttpStatus.BAD_REQUEST);
@@ -84,7 +84,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, DELETION), HttpStatus.UNAUTHORIZED);
             Integer projectDeleted = projectRepository.deleteProjectById(projectId);
             if (projectDeleted.equals(0))
                 return new ResponseEntity(serviceDoesNotExist(PROJECT, DELETION), HttpStatus.BAD_REQUEST);
@@ -109,7 +109,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, RETRIEVAL), HttpStatus.UNAUTHORIZED);
             List<Project> projects = projectRepository.findAll();
             return ResponseEntity.ok(projects);
         }
@@ -120,7 +120,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, ACCESS), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, ACCESS), HttpStatus.UNAUTHORIZED);
 
             // TODO ==> Check user exists.
             Project project = projectRepository.getProjectById(request.projectId());
@@ -137,7 +137,7 @@ public class ProjectService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(PROJECT, REVOKE), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(PROJECT, REVOKE), HttpStatus.UNAUTHORIZED);
 
             Project project = projectRepository.getProjectById(request.projectId());
             if (project == null)

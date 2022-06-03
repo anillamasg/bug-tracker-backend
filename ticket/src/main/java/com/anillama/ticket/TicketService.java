@@ -48,7 +48,7 @@ public class TicketService {
         if (response.token().equals(VALID)) {
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), request.projectId()), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, CREATION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, CREATION), HttpStatus.UNAUTHORIZED);
 
             Ticket ticket = Ticket.builder()
                     .title(request.title())
@@ -92,7 +92,7 @@ public class TicketService {
                 return new ResponseEntity(serviceDoesNotExist(TICKET, RETRIEVAL), HttpStatus.BAD_REQUEST);
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), ticket.getProjectId()), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, RETRIEVAL), HttpStatus.UNAUTHORIZED);
             return ResponseEntity.ok(ticket);
         }
         return new ResponseEntity(invalidUserFailed(TICKET, RETRIEVAL), HttpStatus.UNAUTHORIZED);
@@ -103,7 +103,7 @@ public class TicketService {
         if (response.token().equals(VALID)) {
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), projectId), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, RETRIEVAL), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, RETRIEVAL), HttpStatus.UNAUTHORIZED);
             List<Ticket> tickets = ticketRepository.findAllByProjectId(projectId);
             return ResponseEntity.ok(tickets);
         }
@@ -126,14 +126,14 @@ public class TicketService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.UNAUTHORIZED);
 
             Ticket ticket = ticketRepository.getTicketById(id);
             if (ticket == null)
                 return new ResponseEntity(serviceDoesNotExist(TICKET, DELETION), HttpStatus.BAD_REQUEST);
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), ticket.getProjectId()), INTERNAL_EXCHANGE, "internal.checkUserProject.routing-key");
             if (check.equals(INVALID)) {
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.UNAUTHORIZED);
             }
             ticketRepository.deleteTicketById(id);
             return ResponseEntity.ok(serviceSuccessful(TICKET, DELETION));
@@ -146,11 +146,11 @@ public class TicketService {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
             if (!response.role().equals(ADMIN))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.UNAUTHORIZED);
 
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), projectId), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID))
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, DELETION), HttpStatus.UNAUTHORIZED);
 
             Integer deleteStatus = removeAllTicketsByProject(projectId);
             if (deleteStatus.equals(0))
@@ -170,7 +170,7 @@ public class TicketService {
         if (response.token().equals(VALID)) {
             String check = messageProducer.publishAndReceive(new UserProjectRequest(response.userId(), request.projectId()), INTERNAL_EXCHANGE, INTERNAL_CHECK_USER_PROJECT_ROUTING_KEY);
             if (check.equals(INVALID)) {
-                return new ResponseEntity(unauthorizedUserFailed(TICKET, UPDATE), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(unauthorizedUserFailed(TICKET, UPDATE), HttpStatus.UNAUTHORIZED);
             }
             Ticket savedTicket = ticketRepository.getTicketById(request.id());
             if (savedTicket == null)
