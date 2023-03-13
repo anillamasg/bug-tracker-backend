@@ -21,6 +21,8 @@ services:
       - 6379:6379
     volumes:
       - $PWD/sessionmanagement/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - spring
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

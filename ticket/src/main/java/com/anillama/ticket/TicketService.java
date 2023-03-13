@@ -233,9 +233,9 @@ public class TicketService {
     public ResponseEntity<Resource> downloadAttachments(String authorizationHeader, Long ticketId, String name, HttpServletRequest request) {
         ApplicationUserSessionRequest response = sessionValidateService.validateUser(authorizationHeader);
         if (response.token().equals(VALID)) {
-            String dir = uploadDirectory + ticketId + "/" + name;
+            String dir = uploadDirectory + ticketId + "/" + name.replaceAll("\\s+", "_");
             Path path = Paths.get(dir);
-            ByteArrayResource resource = null;
+            ByteArrayResource resource;
             try {
                 resource = new ByteArrayResource(Files.readAllBytes(path));
             } catch (IOException e) {

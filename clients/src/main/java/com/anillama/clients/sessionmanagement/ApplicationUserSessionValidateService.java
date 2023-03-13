@@ -46,7 +46,7 @@ public class ApplicationUserSessionValidateService {
         role = (String) body.get("role");
         sessionRequest = new ApplicationUserSessionRequest(Long.valueOf(id.longValue()), token, role);
         check = messageProducer.publishAndReceive(sessionRequest, INTERNAL_EXCHANGE, INTERNAL_CHECK_SESSION_ROUTING_KEY);
-        sessionResponse = new ApplicationUserSessionRequest(check.equals(VALID) ? id.longValue() : null, check, role);
+        sessionResponse = new ApplicationUserSessionRequest(VALID.equals(check) ? id.longValue() : null, check, role);
         return sessionResponse;
     }
 }

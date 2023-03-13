@@ -1,0 +1,1730 @@
+{
+	"info": {
+		"_postman_id": "d06fb102-6ca4-4f1e-96f6-144fd6f0a9fa",
+		"name": "Bug Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Kubernetes",
+			"item": [
+				{
+					"name": "authentication",
+					"item": [
+						{
+							"name": "GetAllUsersByProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "authentication.bugtracker.com/allByProject/1",
+									"host": [
+										"authentication",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"allByProject",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sunitagurung@gmail.com\",\n    \"password\": \"s\",\n    \"role\": \"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "authentication.bugtracker.com/create",
+									"host": [
+										"authentication",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LoginUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"anillamasg@gmail.com\",\n    \"password\":\"a\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "authentication.bugtracker.com/login",
+									"host": [
+										"authentication",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetUser",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllUsers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxOTI1NDY3LCJleHAiOjE2NTMwOTEyMDB9.-ZRdXCucpLWiToJFMaS9fyNsa1VnXA4ZEggNX3HuCfwUMaOyAWN9HA2dIliAYgZlFb3BJnQUj42_k_ulNOq4rQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "authentication.bugtracker.com/all",
+									"host": [
+										"authentication",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sessionmanagement",
+					"item": [
+						{
+							"name": "RegisterSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYXNnQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NzgwMDU4MDEsImV4cCI6MTY3OTE0NDQwMH0.KVq7i5zwBplVTVZkpa2pkKSNwbKoMTnWsrWnRWupmeIo7qgMkJavfQPhKU8FVWxgoByKgERZee9aNqB1MFI-KA\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/registerSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"registerSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/getSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"getSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CheckSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/checkSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"checkSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RemoveSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/removeSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"removeSession"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "CreateProfile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Anil Lama\",\n    \"email\": \"anillamasg@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "profile.bugtracker.com/profile/",
+									"host": [
+										"profile",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProfile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "profile.bugtracker.com/profile",
+									"host": [
+										"profile",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProfile",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Anil Lama\",\n    \"email\": \"anillama@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "profile.bugtracker.com/profile/",
+									"host": [
+										"profile",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProfile",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8082/profile/",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "project",
+					"item": [
+						{
+							"name": "CreateProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Quiz App\",\n    \"description\":\"Quiz App is a React based web-app that lets users play tech quiz game.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "project.bugtracker.com/project",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "project.bugtracker.com/project/3",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProject",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Bug Tracker\",\n    \"description\":\"Bug Tracker is currently under development. Currently, backend development is in progress. It is developed in Java using Spring framework.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "project.bugtracker.com/project/3",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProject",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "project.bugtracker.com/project/3",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllProjects",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "project.bugtracker.com/project/all",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ProvideAccessProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":4,\n    \"projectId\":4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "project.bugtracker.com/project/provideAccess",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"provideAccess"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RevokeAccessProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":5,\n    \"projectId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8083/project/revokeAccess",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"revokeAccess"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllForUser",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "project.bugtracker.com/project/allForUser",
+									"host": [
+										"project",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"project",
+										"allForUser"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ticket",
+					"item": [
+						{
+							"name": "CreateTicket",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Create login system.\",\n    \"assigneeId\": 2,\n    \"assignee\":\"Sunita Gurung\",\n    \"assignedBy\": \"Anil Lama\",\n    \"createdBy\": \"Anil Lama\",\n    \"dueDate\": \"2022-05-06\",\n    \"priority\": \"high\",\n    \"type\": \"feature\",\n    \"status\": \"new\",\n    \"comments\": [\n        \"Data looks good.\",\n        \"Picture looks good too.\"\n    ],\n    \"description\": \"This feature is the first feature so it better be good.\",\n    \"projectId\": 1,\n    \"attachedFiles\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/create",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTicketById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYXNnQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzg3MDgwNjEsImV4cCI6MTY3OTg3NTIwMH0.ZfoiNY9jztFj8hdYLz6Xaohe0iSAVIqgsyLZXoTk1mMTbRSVJEd_h7Nl19-dDZS1o5agDiQnwJD9vGChsEnfIg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/1",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/byProject/1",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										"byProject",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByAssignee",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/byAssignee/2",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										"byAssignee",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateTicket",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0MTI4NDU4LCJleHAiOjE2NTUzMDE2MDB9.6MFSiE6iU6Ot7y20-grpJn4P7SY5WZQg-b7K55KrLPHEGwdvy0Z9ig_7CARQ8Q9Nxe3PcHNOs40QODQXTN-ERQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"1\",\n  \"title\": \"Updated Title\",\n  \"description\": \"Updated Description\",\n  \"assignee\": \"Anil Lama\",\n  \"assignedBy\": \"Anil Lama\",\n  \"assigneeId\":\"1\",\n  \"dueDate\": \"2022-07-23\",\n  \"priority\": \"Medium\",\n  \"status\": \"In Progress\",\n  \"type\": \"Enhancement\",\n  \"attachedFiles\": [\n    \"adventurer.png\"\n  ],\n  \"projectId\": \"4\",\n  \"projectName\": \"BugTracker\",\n  \"comment\": {\n    \"updatedBy\": \"Anil Lama\",\n    \"updatedDate\": \"2022-06-01\",\n    \"attachments\": [\n      \"ideas.png\"\n    ],\n    \"action\": {\n      \"title\": \"Updated Title\",\n      \"description\": \"Updated Description\",\n      \"dueDate\": \"2022-07-23\",\n      \"priority\": \"Medium\",\n      \"status\": \"In Progress\",\n      \"type\": \"Enhancement\",\n      \"projectName\": \"BugTracker\"\n    },\n    \"updatedComment\": \"Go get it.\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteTicketById",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5pdGFndXJ1bmdAZ21haWwuY29tIiwiaWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUxMjE1MzkyLCJleHAiOjE2NTIzNjQwMDB9.PAskBwzrnKY3bIjDYM7VWe4Ur2IIgb9lLhppJmgSDJd5z923YG_WiZCffglu9pAvgCnKy9vNEjahCrBoMGeHoQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/9",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteByProject",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjExOTM5LCJleHAiOjE2NTIzNjQwMDB9.zabslHLDdFSqUNhRezJpuXrPJBw7zRtaXrPvxVaOsv8IQl_WLHTthwMhGvWHI5hsMsnFJ0w7CxzFEwAdEc5YtQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/byProject/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"byProject",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Docker",
+			"item": [
+				{
+					"name": "authentication",
+					"item": [
+						{
+							"name": "GetAllUsersByProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/allByProject/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"allByProject",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sunitagurung@gmail.com\",\n    \"password\": \"s\",\n    \"role\": \"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LoginUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"anillama@gmail.com\",\n    \"password\":\"a\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetUser",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllUsers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxOTI1NDY3LCJleHAiOjE2NTMwOTEyMDB9.-ZRdXCucpLWiToJFMaS9fyNsa1VnXA4ZEggNX3HuCfwUMaOyAWN9HA2dIliAYgZlFb3BJnQUj42_k_ulNOq4rQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/all",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjA1Nzc3LCJleHAiOjE2NTIzNjQwMDB9.VPfrlRhkIWYMcVtYUU7jMiry9b2ytOGANNF63pxiSyXewtQg9zLHgLNuGwxSqFdhmU-WtI1xtsvNL2MlJ5usfg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sessionmanagement",
+					"item": [
+						{
+							"name": "RegisterSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYXNnQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NzgwMDU4MDEsImV4cCI6MTY3OTE0NDQwMH0.KVq7i5zwBplVTVZkpa2pkKSNwbKoMTnWsrWnRWupmeIo7qgMkJavfQPhKU8FVWxgoByKgERZee9aNqB1MFI-KA\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/registerSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"registerSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/getSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"getSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CheckSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/checkSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"checkSession"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RemoveSession",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"token\": \"mytoken\",\n    \"role\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/removeSession",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"removeSession"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "CreateProfile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Anil Lama\",\n    \"email\": \"anillamasg@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/profile/",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProfile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8082/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProfile",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Anil Lama\",\n    \"email\": \"anillama@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/profile/",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProfile",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8082/profile/",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"profile",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "project",
+					"item": [
+						{
+							"name": "CreateProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Quiz App\",\n    \"description\":\"Quiz App is a React based web-app that lets users play tech quiz game.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8083/project",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8083/project/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProject",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Bug Tracker\",\n    \"description\":\"Bug Tracker is currently under development. Currently, backend development is in progress. It is developed in Java using Spring framework.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8083/project/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProject",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMTIzODgwLCJleHAiOjE2NTIyNzc2MDB9.Fih88K0Rz1vLEH48vqaBIuL8E6WyeMXxaEVIGwEPIe08jLqa2wDdtcBTR4GKoOvbkSQpvjFQm5xHQc_Xs52PVQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8083/project/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllProjects",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8083/project/all",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ProvideAccessProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":4,\n    \"projectId\":4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8083/project/provideAccess",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"provideAccess"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RevokeAccessProject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":5,\n    \"projectId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8083/project/revokeAccess",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"revokeAccess"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllForUser",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjEwMzAzLCJleHAiOjE2NTIzNjQwMDB9.qsteL69-XrIGTVtXqiPGtbRy9P1juozBZqSwsdpoEDXjcWL0QKdMWh0E81INA91-sUrYgAwWE6Z2RCL7_rWJnA",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8083/project/allForUser",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"project",
+										"allForUser"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ticket",
+					"item": [
+						{
+							"name": "CreateTicket",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Create login system.\",\n    \"assigneeId\": 2,\n    \"assignee\":\"Sunita Gurung\",\n    \"assignedBy\": \"Anil Lama\",\n    \"createdBy\": \"Anil Lama\",\n    \"dueDate\": \"2022-05-06\",\n    \"priority\": \"high\",\n    \"type\": \"feature\",\n    \"status\": \"new\",\n    \"comments\": [\n        \"Data looks good.\",\n        \"Picture looks good too.\"\n    ],\n    \"description\": \"This feature is the first feature so it better be good.\",\n    \"projectId\": 1,\n    \"attachedFiles\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8084/ticket/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTicketById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYXNnQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Nzg3MDgwNjEsImV4cCI6MTY3OTg3NTIwMH0.ZfoiNY9jztFj8hdYLz6Xaohe0iSAVIqgsyLZXoTk1mMTbRSVJEd_h7Nl19-dDZS1o5agDiQnwJD9vGChsEnfIg",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByProject",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/byProject/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"byProject",
+										"1"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetByAssignee",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyMDEwMjc4LCJleHAiOjE2NTMxNzc2MDB9.yxcfwYUMogbPiQ7xGXGX9rdzqBpHRGNtWp4vG5_lSV6ixN0y8xdkKi9yfqJlsglnVUAss6c80hvQIQCch6Eu0g",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/byAssignee/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"byAssignee",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateTicket",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0MTI4NDU4LCJleHAiOjE2NTUzMDE2MDB9.6MFSiE6iU6Ot7y20-grpJn4P7SY5WZQg-b7K55KrLPHEGwdvy0Z9ig_7CARQ8Q9Nxe3PcHNOs40QODQXTN-ERQ",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"1\",\n  \"title\": \"Updated Title\",\n  \"description\": \"Updated Description\",\n  \"assignee\": \"Anil Lama\",\n  \"assignedBy\": \"Anil Lama\",\n  \"assigneeId\":\"1\",\n  \"dueDate\": \"2022-07-23\",\n  \"priority\": \"Medium\",\n  \"status\": \"In Progress\",\n  \"type\": \"Enhancement\",\n  \"attachedFiles\": [\n    \"adventurer.png\"\n  ],\n  \"projectId\": \"4\",\n  \"projectName\": \"BugTracker\",\n  \"comment\": {\n    \"updatedBy\": \"Anil Lama\",\n    \"updatedDate\": \"2022-06-01\",\n    \"attachments\": [\n      \"ideas.png\"\n    ],\n    \"action\": {\n      \"title\": \"Updated Title\",\n      \"description\": \"Updated Description\",\n      \"dueDate\": \"2022-07-23\",\n      \"priority\": \"Medium\",\n      \"status\": \"In Progress\",\n      \"type\": \"Enhancement\",\n      \"projectName\": \"BugTracker\"\n    },\n    \"updatedComment\": \"Go get it.\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "ticket.bugtracker.com/ticket/",
+									"host": [
+										"ticket",
+										"bugtracker",
+										"com"
+									],
+									"path": [
+										"ticket",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteTicketById",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5pdGFndXJ1bmdAZ21haWwuY29tIiwiaWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUxMjE1MzkyLCJleHAiOjE2NTIzNjQwMDB9.PAskBwzrnKY3bIjDYM7VWe4Ur2IIgb9lLhppJmgSDJd5z923YG_WiZCffglu9pAvgCnKy9vNEjahCrBoMGeHoQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/9",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteByProject",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlsbGFtYUBnbWFpbC5jb20iLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUxMjExOTM5LCJleHAiOjE2NTIzNjQwMDB9.zabslHLDdFSqUNhRezJpuXrPJBw7zRtaXrPvxVaOsv8IQl_WLHTthwMhGvWHI5hsMsnFJ0w7CxzFEwAdEc5YtQ",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost:8084/ticket/byProject/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"ticket",
+										"byProject",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
